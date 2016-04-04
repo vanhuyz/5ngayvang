@@ -4,12 +4,12 @@ module ViaEmail
     Mail.defaults do
       delivery_method :smtp,
                       address: 'localhost',
-                      port: 1025,
+                      port: 25,
                       enable_starttls_auto: false
     end
 
     mail = Mail.new do
-      from     '5ngayvang-bot@example.com'
+      from     '5ngayvang-info@example.com'
       to       Constants::TO_EMAILS
       subject  '5ngayvang has been updated!'
       body msg
