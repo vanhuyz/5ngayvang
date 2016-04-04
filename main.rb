@@ -4,25 +4,24 @@ require 'nokogiri'
 require 'open-uri'
 require 'yaml/store'
 require 'slack-notifier'
+require 'mail'
 
-NGAYVANG_URL = 'https://www.vietnamairlines.com/vi/sale-campaign#5ngayvang'.freeze
-WEBHOOK_URL = ENV['WEBHOOK_URL']
+require_relative 'constants'
+require_relative 'via_slack'
+require_relative 'via_email'
 
-def slack_notifier(msg)
-  notifier = Slack::Notifier.new WEBHOOK_URL, username: 'vnairline'
-  notifier.ping msg
-end
-
-doc = Nokogiri::HTML(open(NGAYVANG_URL))
+doc = Nokogiri::HTML(open(Constants::NGAYVANG_URL))
 
 info = doc.css('#5ngayvang #fivedays_table p').text
 store = YAML::Store.new 'info.yml'
 
 store.transaction do
   unless info == store['info']
-    msg = "5ngayvang has been updated! Check it out #{NGAYVANG_URL}"
-    puts msg
-    slack_notifier msg
+    puts Constants::MESSAGE
+
+    ViaSlack.notify Constants::MESSAGE
+    ViaEmail.notify Constants::MESSAGE
+
     store['info'] = info
   end
 end
