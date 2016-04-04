@@ -20,7 +20,9 @@ store = YAML::Store.new 'info.yml'
 
 store.transaction do
   unless info == store['info']
-    slack_notifier("5ngayvang has been updated! Check it out #{NGAYVANG_URL}")
+    msg = "5ngayvang has been updated! Check it out #{NGAYVANG_URL}"
+    puts msg
+    slack_notifier msg
     store['info'] = info
   end
 end
