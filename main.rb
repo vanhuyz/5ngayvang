@@ -19,7 +19,7 @@ info = doc.css('#5ngayvang #fivedays_table p').text
 store = YAML::Store.new 'info.yml'
 
 store.transaction do
-  if info != store['info']
+  unless info == store['info']
     slack_notifier("5ngayvang has been updated! Check it out #{NGAYVANG_URL}")
     store['info'] = info
   end
