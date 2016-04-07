@@ -1,6 +1,6 @@
 # 5ngayvang
 
-A simple script that detects [5ngayvang](https://www.vietnamairlines.com/en/sale-campaign#5ngayvang) when it changes, and notifies you via Slack!
+A simple script that detects [5ngayvang](https://www.vietnamairlines.com/en/sale-campaign#5ngayvang) when it changes, and notifies you via Slack or Email!
 
 ## Installation
 
@@ -16,11 +16,12 @@ $ gem install bundler
 $ bundle install --path vendor/bundle
 ```
 
-* Set up an environment variable for Slack webhook URL
+* Set up environment variables for Slack and Email
 
 ```bash
 # /etc/environment
 WEBHOOK_URL="https://hooks.slack.com/services/YOURTOKEN"
+TO_EMAILS="email1@example.com,email2@example.com"
 ```
 
 ## Usage
@@ -31,7 +32,7 @@ WEBHOOK_URL="https://hooks.slack.com/services/YOURTOKEN"
 $ ruby main.rb
 ```
 
-* You should set up a Cron job that run this script every minute to get notified ASAP when **5ngayvang** changes!
+* You should set up a cron job to run this script every minute in order to get notified ASAP when **5ngayvang** changes!
 
 ```bash
 # crontab -e
