@@ -12,7 +12,7 @@ require_relative 'via_email'
 
 doc = Nokogiri::HTML(open(Constants::NGAYVANG_URL))
 
-info = doc.css('#5ngayvang #fivedays_table p').text
+info = doc.css('#5ngayvang #fivedays_table > p').map(&:text).join("\n")
 store = YAML::Store.new 'info.yml'
 
 store.transaction do
