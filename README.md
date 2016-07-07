@@ -1,6 +1,6 @@
 # 5ngayvang
 
-A simple script that detects [5ngayvang](https://www.vietnamairlines.com/en/sale-campaign#5ngayvang) when it changes, and notifies you via Slack or Email!
+A simple script that detects [5ngayvang](https://www.vietnamairlines.com/sites/5daypromotion#5ngayvang) when it changes, and notifies you via Slack or Email.
 
 ## Installation
 
@@ -32,11 +32,11 @@ TO_EMAILS="email1@example.com,email2@example.com"
 $ ruby main.rb
 ```
 
-* You should set up a cron job to run this script every minute in order to get notified ASAP when **5ngayvang** changes!
+* You should set up a cron job to run this script every hour in order to get notified ASAP when **5ngayvang** changes!
 
 ```bash
 # crontab -e
-* * * * * /bin/bash -l -c 'cd /PATH/TO/5ngayvang && /PATH/TO/ruby main.rb'
+0 * * * * /bin/bash -l -c 'cd /PATH/TO/5ngayvang && /PATH/TO/ruby main.rb'
 ```
 ## Contributing
 
